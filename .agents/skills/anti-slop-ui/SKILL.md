@@ -1,0 +1,169 @@
+---
+name: anti-slop-ui
+description: A strict heuristic framework to prevent AI design hallucinations. This skill serves as an index and workflow guide to the Anti-Slop UI framework.
+---
+
+# Anti-Slop UI Framework
+**Goal:** Prevent the generation of generic "AI Slop" by using predefined expert-level design heuristics.
+**Instructions:** Use the Design Schools and UI Layers linked below as a strong foundation. You may apply your own creativity and adapt these heuristics to best fit the specific needs of the project.
+
+## Workflows
+
+### 1. New UI Generation Mode
+When creating a new UI from scratch, follow these state-reset steps:
+1. **Choose 1 Design School:** Pick a school from the index below. Read it.
+2. **Group A (Structure):** Pick 1 layer from Group A.
+3. **Group B (Typography):** Pick 1 layer from Group B.
+4. **Group C (Components):** Pick 1 layer from Group C.
+5. **Group D (Aesthetics):** Pick 1 layer from Group D.
+6. **Group E (Physics):** Pick 1 layer from Group E.
+7. **Group F (Anti-Slop Blacklist):** ALWAY READ `base-ai-slop.md` to ensure you aren't doing anything forbidden.
+
+### 2. Edit Mode (Existing Website)
+When editing an already existing website:
+1. Do not rewrite the entire architecture. 
+2. Identify the closest matching **Design School** to the existing site and read it to align your CSS tokens.
+3. Select specific **Layers** from the groups below that enhance the component you are currently editing.
+
+### 3. Targeted Slop Removal
+When asked to fix a specific thing or remove general AI slop:
+1. Identify the sloppy element (e.g., generic 8px rounded corners, bad shadows).
+2. Read the `base-ai-slop.md` blacklist to identify the specific slop token.
+3. Pick the corresponding corrective layer from the index below to cure the slop.
+
+---
+
+## Design Schools Index
+Choose a Design School for your project and read its file:
+- [Adobe Spectrum](Anti-Slop-UI/skills/schools/adobe-spectrum.md)
+- [Airbnb Dls](Anti-Slop-UI/skills/schools/airbnb-dls.md)
+- [Ant Design](Anti-Slop-UI/skills/schools/ant-design.md)
+- [Apple](Anti-Slop-UI/skills/schools/apple.md)
+- [Arc Browser](Anti-Slop-UI/skills/schools/arc-browser.md)
+- [Atlassian Design](Anti-Slop-UI/skills/schools/atlassian-design.md)
+- [Audi Ui](Anti-Slop-UI/skills/schools/audi-ui.md)
+- [Bbc Gel](Anti-Slop-UI/skills/schools/bbc-gel.md)
+- [Bloomberg Terminal](Anti-Slop-UI/skills/schools/bloomberg-terminal.md)
+- [Boeing Flight Deck](Anti-Slop-UI/skills/schools/boeing-flight-deck.md)
+- [Braun Dieter Rams](Anti-Slop-UI/skills/schools/braun-dieter-rams.md)
+- [Carbon Design](Anti-Slop-UI/skills/schools/carbon-design.md)
+- [Chakra Ui](Anti-Slop-UI/skills/schools/chakra-ui.md)
+- [Discord](Anti-Slop-UI/skills/schools/discord.md)
+- [Duolingo](Anti-Slop-UI/skills/schools/duolingo.md)
+- [Ea Sports](Anti-Slop-UI/skills/schools/ea-sports.md)
+- [Epic Games Unreal](Anti-Slop-UI/skills/schools/epic-games-unreal.md)
+- [Figma](Anti-Slop-UI/skills/schools/figma.md)
+- [Framer Motion Default](Anti-Slop-UI/skills/schools/framer-motion-default.md)
+- [Github Primer](Anti-Slop-UI/skills/schools/github-primer.md)
+- [Google](Anti-Slop-UI/skills/schools/google.md)
+- [Gov Uk](Anti-Slop-UI/skills/schools/gov-uk.md)
+- [Ibm](Anti-Slop-UI/skills/schools/ibm.md)
+- [Ios 7 Skeuomorphic](Anti-Slop-UI/skills/schools/ios-7-skeuomorphic.md)
+- [Linear App](Anti-Slop-UI/skills/schools/linear-app.md)
+- [Lucid Motors](Anti-Slop-UI/skills/schools/lucid-motors.md)
+- [Mailchimp](Anti-Slop-UI/skills/schools/mailchimp.md)
+- [Material You](Anti-Slop-UI/skills/schools/material-you.md)
+- [Microsoft](Anti-Slop-UI/skills/schools/microsoft.md)
+- [Monzo](Anti-Slop-UI/skills/schools/monzo.md)
+- [Nintendo Switch](Anti-Slop-UI/skills/schools/nintendo-switch.md)
+- [Nothing Os](Anti-Slop-UI/skills/schools/nothing-os.md)
+- [Notion](Anti-Slop-UI/skills/schools/notion.md)
+- [Nytimes](Anti-Slop-UI/skills/schools/nytimes.md)
+- [Openai](Anti-Slop-UI/skills/schools/openai.md)
+- [Panasonic Avionics](Anti-Slop-UI/skills/schools/panasonic-avionics.md)
+- [Pinterest Gestalt](Anti-Slop-UI/skills/schools/pinterest-gestalt.md)
+- [Playstation 5](Anti-Slop-UI/skills/schools/playstation-5.md)
+- [Radix Themes](Anti-Slop-UI/skills/schools/radix-themes.md)
+- [Raycast](Anti-Slop-UI/skills/schools/raycast.md)
+- [Revolut](Anti-Slop-UI/skills/schools/revolut.md)
+- [Riot Games](Anti-Slop-UI/skills/schools/riot-games.md)
+- [Rivian Ui](Anti-Slop-UI/skills/schools/rivian-ui.md)
+- [Salesforce Kinetix](Anti-Slop-UI/skills/schools/salesforce-kinetix.md)
+- [Salesforce Lightning](Anti-Slop-UI/skills/schools/salesforce-lightning.md)
+- [Shadcn Ui](Anti-Slop-UI/skills/schools/shadcn-ui.md)
+- [Shopify Polaris](Anti-Slop-UI/skills/schools/shopify-polaris.md)
+- [Slack](Anti-Slop-UI/skills/schools/slack.md)
+- [Spotify Encore](Anti-Slop-UI/skills/schools/spotify-encore.md)
+- [Stripe Isometric](Anti-Slop-UI/skills/schools/stripe-isometric.md)
+- [Supercell](Anti-Slop-UI/skills/schools/supercell.md)
+- [Tailwind Ui](Anti-Slop-UI/skills/schools/tailwind-ui.md)
+- [Teenage Engineering Op1](Anti-Slop-UI/skills/schools/teenage-engineering-op1.md)
+- [Teenage Engineering Tx6](Anti-Slop-UI/skills/schools/teenage-engineering-tx6.md)
+- [Teenage Engineering](Anti-Slop-UI/skills/schools/teenage-engineering.md)
+- [Tesla Ui](Anti-Slop-UI/skills/schools/tesla-ui.md)
+- [Uber Base](Anti-Slop-UI/skills/schools/uber-base.md)
+- [Vercel Minimalism](Anti-Slop-UI/skills/schools/vercel-minimalism.md)
+- [Vogue](Anti-Slop-UI/skills/schools/vogue.md)
+- [Windows 95](Anti-Slop-UI/skills/schools/windows-95.md)
+- [Wise](Anti-Slop-UI/skills/schools/wise.md)
+- [Xbox Fluent](Anti-Slop-UI/skills/schools/xbox-fluent.md)
+
+## UI Layers Index
+Mix and match layers from the groups below by reading their files:
+
+### Group A Structure
+- [8pt Grid](Anti-Slop-UI/skills/layers/group-a-structure/8pt-grid.md)
+- [Bento Box Grid](Anti-Slop-UI/skills/layers/group-a-structure/bento-box-grid.md)
+- [Desktop Heavy](Anti-Slop-UI/skills/layers/group-a-structure/desktop-heavy.md)
+- [Flat](Anti-Slop-UI/skills/layers/group-a-structure/flat.md)
+- [Fluid](Anti-Slop-UI/skills/layers/group-a-structure/fluid.md)
+- [Masonry](Anti-Slop-UI/skills/layers/group-a-structure/masonry.md)
+- [Material Depth](Anti-Slop-UI/skills/layers/group-a-structure/material-depth.md)
+- [Split Screen Layout](Anti-Slop-UI/skills/layers/group-a-structure/split-screen-layout.md)
+- [Swiss Asymmetrical](Anti-Slop-UI/skills/layers/group-a-structure/swiss-asymmetrical.md)
+### Group B Typography
+- [Chunky Sans Serifs](Anti-Slop-UI/skills/layers/group-b-typography/chunky-sans-serifs.md)
+- [Elegant Serif](Anti-Slop-UI/skills/layers/group-b-typography/elegant-serif.md)
+- [Fluid Typography](Anti-Slop-UI/skills/layers/group-b-typography/fluid-typography.md)
+- [Golden Ratio Typography](Anti-Slop-UI/skills/layers/group-b-typography/golden-ratio-typography.md)
+- [Neo Grotesque](Anti-Slop-UI/skills/layers/group-b-typography/neo-grotesque.md)
+- [Variable Fonts](Anti-Slop-UI/skills/layers/group-b-typography/variable-fonts.md)
+### Group C Components
+- [Floating Labels](Anti-Slop-UI/skills/layers/group-c-components/floating-labels.md)
+- [Pill Radius](Anti-Slop-UI/skills/layers/group-c-components/pill-radius.md)
+- [Scale Up](Anti-Slop-UI/skills/layers/group-c-components/scale-up.md)
+- [Sharp 0px](Anti-Slop-UI/skills/layers/group-c-components/sharp-0px.md)
+- [Skeuomorphic Buttons](Anti-Slop-UI/skills/layers/group-c-components/skeuomorphic-buttons.md)
+- [Solid Fill Inputs](Anti-Slop-UI/skills/layers/group-c-components/solid-fill-inputs.md)
+### Group D Aesthetics
+- [Aurora Backgrounds](Anti-Slop-UI/skills/layers/group-d-aesthetics/aurora-backgrounds.md)
+- [Brutalism](Anti-Slop-UI/skills/layers/group-d-aesthetics/brutalism.md)
+- [Claymorphism](Anti-Slop-UI/skills/layers/group-d-aesthetics/claymorphism.md)
+- [Cyberpunk Neon](Anti-Slop-UI/skills/layers/group-d-aesthetics/cyberpunk-neon.md)
+- [Dark Mode Pure Black](Anti-Slop-UI/skills/layers/group-d-aesthetics/dark-mode-pure-black.md)
+- [Dark Mode Tinted](Anti-Slop-UI/skills/layers/group-d-aesthetics/dark-mode-tinted.md)
+- [Duotone Imagery](Anti-Slop-UI/skills/layers/group-d-aesthetics/duotone-imagery.md)
+- [Frosted Glass](Anti-Slop-UI/skills/layers/group-d-aesthetics/frosted-glass.md)
+- [Glass Morphism](Anti-Slop-UI/skills/layers/group-d-aesthetics/glass-morphism.md)
+- [Hand Drawn Elements](Anti-Slop-UI/skills/layers/group-d-aesthetics/hand-drawn-elements.md)
+- [Heavy Blur](Anti-Slop-UI/skills/layers/group-d-aesthetics/heavy-blur.md)
+- [High Contrast Accessibility](Anti-Slop-UI/skills/layers/group-d-aesthetics/high-contrast-accessibility.md)
+- [Linear Harsh Gradients](Anti-Slop-UI/skills/layers/group-d-aesthetics/linear-harsh-gradients.md)
+- [Low Poly](Anti-Slop-UI/skills/layers/group-d-aesthetics/low-poly.md)
+- [Mesh Gradients](Anti-Slop-UI/skills/layers/group-d-aesthetics/mesh-gradients.md)
+- [Minimalist Wireframe](Anti-Slop-UI/skills/layers/group-d-aesthetics/minimalist-wireframe.md)
+- [Monochromatic Palette](Anti-Slop-UI/skills/layers/group-d-aesthetics/monochromatic-palette.md)
+- [Monochrome Neon](Anti-Slop-UI/skills/layers/group-d-aesthetics/monochrome-neon.md)
+- [Neumorphic Shadows](Anti-Slop-UI/skills/layers/group-d-aesthetics/neumorphic-shadows.md)
+- [Neumorphism](Anti-Slop-UI/skills/layers/group-d-aesthetics/neumorphism.md)
+- [No Gradients](Anti-Slop-UI/skills/layers/group-d-aesthetics/no-gradients.md)
+- [Pastel Gradients](Anti-Slop-UI/skills/layers/group-d-aesthetics/pastel-gradients.md)
+- [Pixel Art Ui](Anti-Slop-UI/skills/layers/group-d-aesthetics/pixel-art-ui.md)
+- [Retro Wave](Anti-Slop-UI/skills/layers/group-d-aesthetics/retro-wave.md)
+- [Watercolor Textures](Anti-Slop-UI/skills/layers/group-d-aesthetics/watercolor-textures.md)
+### Group E Advanced
+- [Glitch Effect](Anti-Slop-UI/skills/layers/group-e-advanced/glitch-effect.md)
+- [Grain Noise Overlay](Anti-Slop-UI/skills/layers/group-e-advanced/grain-noise-overlay.md)
+- [Isometric 3d](Anti-Slop-UI/skills/layers/group-e-advanced/isometric-3d.md)
+- [Kinetic Typography](Anti-Slop-UI/skills/layers/group-e-advanced/kinetic-typography.md)
+- [Micro Interactions](Anti-Slop-UI/skills/layers/group-e-advanced/micro-interactions.md)
+- [Parallax Scrolling](Anti-Slop-UI/skills/layers/group-e-advanced/parallax-scrolling.md)
+- [Scroll Driven Animations](Anti-Slop-UI/skills/layers/group-e-advanced/scroll-driven-animations.md)
+- [Spring Physics](Anti-Slop-UI/skills/layers/group-e-advanced/spring-physics.md)
+- [Typewriter Effect](Anti-Slop-UI/skills/layers/group-e-advanced/typewriter-effect.md)
+- [Webgl 3d Immersive](Anti-Slop-UI/skills/layers/group-e-advanced/webgl-3d-immersive.md)
+### Group F Anti Slop Blacklist
+- [Base Ai Slop](Anti-Slop-UI/skills/layers/group-f-anti-slop-blacklist/base-ai-slop.md)
+### Layers
+- [Mobile First](Anti-Slop-UI/skills/layers/mobile-first.md)
+- [Webgl 3d](Anti-Slop-UI/skills/layers/webgl-3d.md)
