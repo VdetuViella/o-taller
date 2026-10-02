@@ -21,17 +21,22 @@ export function RevealHeading({ children, className }: RevealHeadingProps) {
     const mm = gsap.matchMedia();
 
     mm.add(MOTION_OK, () => {
-      gsap.from(ref.current, {
-        y: 32,
-        autoAlpha: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ref.current,
-          start: "top 85%",
-          once: true,
+      gsap.fromTo(
+        ref.current,
+        { y: 32, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          overwrite: "auto",
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 85%",
+            toggleActions: "restart none none reverse",
+          },
         },
-      });
+      );
     });
   }, { scope: ref });
 

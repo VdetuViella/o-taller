@@ -26,17 +26,23 @@ export function PracticeList({ names }: PracticeListProps) {
     const rows = [...list.querySelectorAll<HTMLElement>("[data-practice]")];
 
     mm.add(MOTION_OK, () => {
-      gsap.from(rows, {
-        y: 48,
-        autoAlpha: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: list,
-          start: "top 85%",
-          once: true,
-        },
+      rows.forEach((row, index) => {
+        gsap.fromTo(
+          row,
+          { y: 28 + index * 16, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.6,
+            ease: "power2.out",
+            overwrite: "auto",
+            scrollTrigger: {
+              trigger: row,
+              start: "top 82%",
+              toggleActions: "restart none none reverse",
+            },
+          },
+        );
       });
     });
 
@@ -45,14 +51,26 @@ export function PracticeList({ names }: PracticeListProps) {
 
       rows.forEach((row) => {
         const rule = row.querySelector<HTMLElement>("[data-rule]");
-        if (!rule) return;
+        const name = row.querySelector<HTMLElement>("[data-name]");
+        if (!rule || !name) return;
 
         gsap.set(rule, { scaleX: 0, transformOrigin: "left center" });
+
+        const xTo = gsap.quickTo(name, "x", {
+          duration: 0.35,
+          ease: "power3.out",
+        });
 
         const onEnter = () => {
           gsap.to(rule, { scaleX: 1, duration: 0.35, ease: "power2.out" });
         };
+        const onMove = (event: PointerEvent) => {
+          const rect = row.getBoundingClientRect();
+          const dx = event.clientX - (rect.left + rect.width / 2);
+          xTo(gsap.utils.clamp(-6, 6, dx));
+        };
         const onLeave = () => {
+          xTo(0);
           gsap.to(rule, {
             scaleX: 0,
             duration: 0.25,
@@ -61,9 +79,11 @@ export function PracticeList({ names }: PracticeListProps) {
         };
 
         row.addEventListener("pointerenter", onEnter);
+        row.addEventListener("pointermove", onMove);
         row.addEventListener("pointerleave", onLeave);
         cleanups.push(() => {
           row.removeEventListener("pointerenter", onEnter);
+          row.removeEventListener("pointermove", onMove);
           row.removeEventListener("pointerleave", onLeave);
         });
       });
@@ -78,7 +98,10 @@ export function PracticeList({ names }: PracticeListProps) {
     <ul ref={root} className="mt-16 flex flex-col items-start gap-6">
       {names.map((nombre) => (
         <li key={nombre} data-practice className="relative">
-          <h3 className="font-display text-4xl uppercase leading-[0.9] tracking-[-0.05em] md:text-6xl">
+          <h3
+            data-name
+            className="font-display text-4xl uppercase leading-[0.9] tracking-[-0.05em] md:text-6xl"
+          >
             {nombre}
           </h3>
           <span
