@@ -14,9 +14,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Nereita, academia de pintura y arte",
+  title: "O Taller, academia de pintura y arte",
   description:
-    "Academia presencial de pintura, dibujo, color y grabado. Clases en el taller, tres tardes por semana.",
+    "O Taller, academia presencial de pintura, dibujo, color y grabado. Clases en el taller, tres tardes por semana.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
