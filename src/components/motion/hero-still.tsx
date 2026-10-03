@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { entranceTravel, useHeroDriven, usePageMotion } from "@/components/motion/entrance";
 import { MagneticButton } from "@/components/motion/magnetic-button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -31,28 +32,38 @@ export function HeroStill({ title, lede, cta }: HeroStillProps) {
   const frameRef = useRef<HTMLDivElement>(null);
   const scrubRef = useRef<HTMLDivElement>(null);
   const stillRef = useRef<HTMLDivElement>(null);
+  const released = usePageMotion();
+  const driven = useHeroDriven();
 
   useGSAP(
     () => {
+      if (!released) return;
+
       const mm = gsap.matchMedia();
 
       mm.add(MOTION_OK, () => {
-        gsap.from([titleRef.current, ledeRef.current, ctaRef.current], {
-          y: 24,
-          autoAlpha: 0,
-          duration: 0.6,
-          stagger: 0.12,
-          ease: "power2.out",
-        });
+        if (!driven) {
+          gsap.from([titleRef.current, ledeRef.current, ctaRef.current], {
+            y: 24,
+            autoAlpha: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power2.out",
+          });
+        }
 
         gsap.to(copyRef.current, {
           y: -56,
           ease: "none",
           scrollTrigger: {
             trigger: root.current,
-            start: "top top",
-            end: "bottom top",
+            start: () => entranceTravel() + (root.current?.offsetTop ?? 0),
+            end: () =>
+              entranceTravel() +
+              (root.current?.offsetTop ?? 0) +
+              (root.current?.offsetHeight ?? 0),
             scrub: true,
+            invalidateOnRefresh: true,
           },
         });
 
@@ -61,9 +72,13 @@ export function HeroStill({ title, lede, cta }: HeroStillProps) {
           ease: "none",
           scrollTrigger: {
             trigger: root.current,
-            start: "top top",
-            end: "bottom top",
+            start: () => entranceTravel() + (root.current?.offsetTop ?? 0),
+            end: () =>
+              entranceTravel() +
+              (root.current?.offsetTop ?? 0) +
+              (root.current?.offsetHeight ?? 0),
             scrub: true,
+            invalidateOnRefresh: true,
           },
         });
       });
@@ -113,7 +128,7 @@ export function HeroStill({ title, lede, cta }: HeroStillProps) {
         };
       });
     },
-    { scope: root },
+    { scope: root, dependencies: [released, driven] },
   );
 
   return (
@@ -127,22 +142,25 @@ export function HeroStill({ title, lede, cta }: HeroStillProps) {
       >
         <h1
           ref={titleRef}
+          data-entrance-title
           className="font-display text-[2.5rem] uppercase leading-[0.9] tracking-[-0.05em] md:text-6xl lg:text-7xl"
         >
           {title}
         </h1>
         <p
           ref={ledeRef}
+          data-entrance-lede
           className="mt-6 max-w-[65ch] text-base leading-relaxed"
         >
           {lede}
         </p>
-        <div ref={ctaRef} className="mt-8">
+        <div ref={ctaRef} data-entrance-cta className="mt-8">
           <MagneticButton>{cta}</MagneticButton>
         </div>
       </div>
       <div
         ref={frameRef}
+        data-entrance-hero
         className="relative min-h-48 overflow-hidden border-t border-black md:min-h-0 md:border-t-0 md:border-l"
       >
         <div className="absolute inset-0 [perspective:1200px]">

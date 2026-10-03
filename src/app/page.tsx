@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Entrance } from "@/components/motion/entrance";
 import { HeroStill } from "@/components/motion/hero-still";
 import { HoverLink } from "@/components/motion/hover-link";
 import { MagneticButton } from "@/components/motion/magnetic-button";
@@ -37,7 +38,7 @@ function PedirPlaza({ className }: { className?: string }) {
 
 export default function Home() {
   return (
-    <>
+    <Entrance>
       <a
         href="#contenido"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-background focus:px-4 focus:py-2 focus:outline focus:outline-2 focus:outline-black"
@@ -48,6 +49,7 @@ export default function Home() {
       <header className="flex h-16 items-center justify-between gap-4 border-b border-black px-4 md:px-8">
         <a
           href="#contenido"
+          data-entrance-logo
           className="font-display text-lg uppercase leading-none tracking-[-0.05em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
         >
           O Taller
@@ -71,7 +73,7 @@ export default function Home() {
           cta={<PedirPlaza />}
         />
 
-        <section id="taller" className="border-t border-black px-4 py-24 md:px-8">
+        <section id="taller" className="px-4 py-24 md:px-8">
           <div className="mx-auto max-w-[1400px]">
             <RevealGroup upwardExit>
               <h2
@@ -92,7 +94,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-black">
+        <section>
           <MaterialFrame />
           <ScrollDepth
             y={-28}
@@ -116,7 +118,7 @@ export default function Home() {
           </ScrollDepth>
         </section>
 
-        <section className="border-t border-black px-4 py-24 md:px-8">
+        <section className="px-4 py-24 md:px-8">
           <div className="mx-auto max-w-[1400px]">
             <RevealHeading className="max-w-[10ch] font-display text-5xl uppercase leading-[0.9] tracking-[-0.05em] md:text-7xl">
               Tres tardes
@@ -133,7 +135,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="plaza" className="border-t border-black px-4 py-24 md:px-8">
+        <section id="plaza" className="px-4 py-24 md:px-8">
           <PlazaRow title="Una tarde de prueba">
             <p className="max-w-[65ch] text-base leading-relaxed">
               Vienes una tarde, ves el taller y decides después. Escribe y te
@@ -145,13 +147,13 @@ export default function Home() {
           </PlazaRow>
         </section>
       </main>
-      <footer className="border-t border-black px-4 py-8 md:px-8">
+      <footer className="px-4 py-8 md:px-8">
         <RevealGroup className="mx-auto max-w-[1400px]" start="top bottom">
           <p data-reveal className="text-base leading-relaxed">
             O Taller, academia de pintura y arte.
           </p>
         </RevealGroup>
       </footer>
-    </>
+    </Entrance>
   );
 }

@@ -4,6 +4,7 @@ import { useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { entrancePoint, usePageMotion } from "@/components/motion/entrance";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -18,17 +19,22 @@ export function PlazaRow({ title, children }: PlazaRowProps) {
   const root = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
+  const released = usePageMotion();
 
   useGSAP(
     () => {
+      if (!released) return;
+
       const mm = gsap.matchMedia();
 
       mm.add(MOTION_OK, () => {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: root.current,
-            start: "top 85%",
+            start: entrancePoint(root.current, "top 85%"),
+            end: entrancePoint(root.current, "bottom top"),
             toggleActions: "restart none none reverse",
+            invalidateOnRefresh: true,
           },
         });
 
@@ -46,7 +52,7 @@ export function PlazaRow({ title, children }: PlazaRowProps) {
         );
       });
     },
-    { scope: root },
+    { scope: root, dependencies: [released] },
   );
 
   return (

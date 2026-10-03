@@ -4,6 +4,7 @@ import { useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { entrancePoint, usePageMotion } from "@/components/motion/entrance";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -16,8 +17,11 @@ type RevealHeadingProps = {
 
 export function RevealHeading({ children, className }: RevealHeadingProps) {
   const ref = useRef<HTMLHeadingElement>(null);
+  const released = usePageMotion();
 
   useGSAP(() => {
+    if (!released) return;
+
     const mm = gsap.matchMedia();
 
     mm.add(MOTION_OK, () => {
@@ -32,13 +36,15 @@ export function RevealHeading({ children, className }: RevealHeadingProps) {
           overwrite: "auto",
           scrollTrigger: {
             trigger: ref.current,
-            start: "top 85%",
+            start: entrancePoint(ref.current, "top 85%"),
+            end: entrancePoint(ref.current, "bottom top"),
             toggleActions: "restart none none reverse",
+            invalidateOnRefresh: true,
           },
         },
       );
     });
-  }, { scope: ref });
+  }, { scope: ref, dependencies: [released] });
 
   return (
     <h2 ref={ref} className={className}>

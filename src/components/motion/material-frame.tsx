@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { entrancePoint, usePageMotion } from "@/components/motion/entrance";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -19,9 +20,12 @@ export function MaterialFrame() {
   const frameRef = useRef<HTMLDivElement>(null);
   const scrubRef = useRef<HTMLDivElement>(null);
   const stillRef = useRef<HTMLDivElement>(null);
+  const released = usePageMotion();
 
   useGSAP(
     () => {
+      if (!released) return;
+
       const mm = gsap.matchMedia();
 
       mm.add(MOTION_OK, () => {
@@ -30,9 +34,10 @@ export function MaterialFrame() {
           ease: "none",
           scrollTrigger: {
             trigger: frameRef.current,
-            start: "top bottom",
-            end: "bottom top",
+            start: entrancePoint(frameRef.current, "top bottom"),
+            end: entrancePoint(frameRef.current, "bottom top"),
             scrub: true,
+            invalidateOnRefresh: true,
           },
         });
       });
@@ -82,7 +87,7 @@ export function MaterialFrame() {
         };
       });
     },
-    { scope: frameRef },
+    { scope: frameRef, dependencies: [released] },
   );
 
   return (

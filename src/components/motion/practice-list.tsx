@@ -4,6 +4,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { entrancePoint, usePageMotion } from "@/components/motion/entrance";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -17,8 +18,11 @@ type PracticeListProps = {
 
 export function PracticeList({ names }: PracticeListProps) {
   const root = useRef<HTMLUListElement>(null);
+  const released = usePageMotion();
 
   useGSAP(() => {
+    if (!released) return;
+
     const list = root.current;
     if (!list) return;
 
@@ -38,8 +42,10 @@ export function PracticeList({ names }: PracticeListProps) {
             overwrite: "auto",
             scrollTrigger: {
               trigger: row,
-              start: "top 82%",
+              start: entrancePoint(row, "top 82%"),
+              end: entrancePoint(row, "bottom top"),
               toggleActions: "restart none none reverse",
+              invalidateOnRefresh: true,
             },
           },
         );
@@ -92,7 +98,7 @@ export function PracticeList({ names }: PracticeListProps) {
         cleanups.forEach((cleanup) => cleanup());
       };
     });
-  }, { scope: root });
+  }, { scope: root, dependencies: [released] });
 
   return (
     <ul ref={root} className="mt-16 flex flex-col items-start gap-6">

@@ -4,6 +4,7 @@ import { useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { entrancePoint, usePageMotion } from "@/components/motion/entrance";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -25,9 +26,12 @@ export function RevealGroup({
   upwardExit = false,
 }: RevealGroupProps) {
   const root = useRef<HTMLDivElement>(null);
+  const released = usePageMotion();
 
   useGSAP(
     () => {
+      if (!released) return;
+
       const group = root.current;
       if (!group) return;
 
@@ -50,8 +54,10 @@ export function RevealGroup({
                 overwrite: "auto",
                 scrollTrigger: {
                   trigger: item,
-                  start: "top 82%",
+                  start: entrancePoint(item, "top 82%"),
+                  end: entrancePoint(item, "bottom top"),
                   toggleActions: "restart none none reverse",
+                  invalidateOnRefresh: true,
                 },
               },
             );
@@ -72,14 +78,16 @@ export function RevealGroup({
             overwrite: "auto",
             scrollTrigger: {
               trigger: group,
-              start,
+              start: entrancePoint(group, start),
+              end: entrancePoint(group, "bottom top"),
               toggleActions: "restart none none reverse",
+              invalidateOnRefresh: true,
             },
           },
         );
       });
     },
-    { scope: root, dependencies: [delay, start, upwardExit] },
+    { scope: root, dependencies: [delay, start, upwardExit, released] },
   );
 
   return (
